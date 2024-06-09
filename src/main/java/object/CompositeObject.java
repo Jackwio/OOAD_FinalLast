@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class CompositeObject extends UMLObject{
-    protected static ArrayList<HashSet<ShapeObject>> compositeShape = new ArrayList<>();
+    protected static ArrayList<HashSet<UMLObject>> compositeShape = new ArrayList<>();
 
-    public static ArrayList<HashSet<ShapeObject>> getCompositeShape() {
+    public static ArrayList<HashSet<UMLObject>> getCompositeShape() {
         return compositeShape;
     }
 
-    public static void addCompositeShape(HashSet<ShapeObject> shapeObject) {
+    public static void addCompositeShape(HashSet<UMLObject> shapeObject) {
         CompositeObject.compositeShape.add(shapeObject);
     }
 
@@ -19,4 +19,5 @@ public class CompositeObject extends UMLObject{
     public void draw(Graphics g) {
 
     }
+
 }

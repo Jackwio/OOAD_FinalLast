@@ -33,14 +33,6 @@ public class Port {
         return portLeftY;
     }
 
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
     public Point getCenter() {
         return center;
     }

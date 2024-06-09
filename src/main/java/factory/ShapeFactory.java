@@ -10,17 +10,9 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class ShapeFactory implements ObjectFactory {
-    private static ObjectFactory objectFactory;
     private static UMLEditor umlEditor = UMLEditor.getUmlEditor();
 
     public ShapeFactory() {
-    }
-
-    public static ObjectFactory getObjectFactory() {
-        if (objectFactory == null) {
-            objectFactory = new ShapeFactory();
-        }
-        return objectFactory;
     }
 
     @Override

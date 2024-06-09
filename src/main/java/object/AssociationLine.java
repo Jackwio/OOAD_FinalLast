@@ -10,10 +10,10 @@ public class AssociationLine extends LineObject{
     public void draw(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.WHITE);
-        int x1 = startPoint.x;
-        int x2 = endPoint.x;
-        int y1 = startPoint.y;
-        int y2 = endPoint.y;
+        int x1 = point1.x;
+        int x2 = point2.x;
+        int y1 = point1.y;
+        int y2 = point2.y;
 
         g2d.drawLine(x1, y1, x2, y2);
 

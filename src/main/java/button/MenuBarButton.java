@@ -2,6 +2,7 @@ package button;
 
 import object.CompositeObject;
 import object.ShapeObject;
+import object.UMLObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,16 +44,15 @@ public class MenuBarButton extends JMenuBar {
 
                 confirmButton.setBounds(nameLocX + 10, buttonLocY, 100, 45);
                 confirmButton.addActionListener(new ActionListener() {
-
                     @Override
                     public void actionPerformed(ActionEvent e) {
-//                        for (ShapeObject shapeObject : umlEditor.getShapes()) {
-//                            if (umlEditor.getCurrentSelectedObject() == shapeObject) {
-//                                shapeObject.setObjectName(newObjectName.getText());
-//                                umlEditor.repaint();
-//                                break;
-//                            }
-//                        }
+                        for (UMLObject shape : umlEditor.getShapes()) {
+                            if (umlEditor.getCurrentSelectedObject() == shape) {
+                                shape.setName(newObjectName.getText());
+                                umlEditor.repaint();
+                                break;
+                            }
+                        }
                         renameDialog.dispose();
                     }
                 });
@@ -64,7 +64,6 @@ public class MenuBarButton extends JMenuBar {
                         renameDialog.dispose();
                     }
                 });
-
                 renameDialog.setLayout(null);
                 renameDialog.add(newObjectName);
                 renameDialog.add(confirmButton);
@@ -85,11 +84,11 @@ public class MenuBarButton extends JMenuBar {
                     return;
                 }
 
-//                HashSet<ShapeObject> groupShape = new HashSet<>(umlEditor.getSelectShapes());
-//                CompositeObject.addCompositeShape(groupShape);
-//
-//                umlEditor.resetIsSelected(false);
-//                umlEditor.getSelectShapes().clear();
+                HashSet<UMLObject> groupShape = new HashSet<>(umlEditor.getSelectShapes());
+                CompositeObject.addCompositeShape(groupShape);
+
+                umlEditor.resetIsSelected(false);
+                umlEditor.getSelectShapes().clear();
 
                 umlEditor.repaint();
             }
@@ -103,7 +102,7 @@ public class MenuBarButton extends JMenuBar {
                     JOptionPane.showMessageDialog(null, "請選取一個group物件");
                     return;
                 }
-                ArrayList<HashSet<ShapeObject>> compositeShape = CompositeObject.getCompositeShape();
+                ArrayList<HashSet<UMLObject>> compositeShape = CompositeObject.getCompositeShape();
 //                for (int i = compositeShape.size() - 1; i >= 0; i--) {
 //                    if (compositeShape.get(i).contains(canvas.getSelectShapes().get(0))) {
 //                        compositeShape.remove(i);
@@ -114,7 +113,7 @@ public class MenuBarButton extends JMenuBar {
 
                 Vector<Integer> removeIndex = new Vector<>();
                 int size = 0;
-                HashSet<ShapeObject> temp = new HashSet<>();
+                HashSet<UMLObject> temp = new HashSet<>();
                 for (int i = compositeShape.size() - 1; i >= 0; i--) {
                     if (umlEditor.getSelectShapes().containsAll(compositeShape.get(i))) {
                         if (size == 0) {

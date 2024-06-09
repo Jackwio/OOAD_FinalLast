@@ -23,9 +23,6 @@ public class UMLEditor extends JPanel {
     // 所有已畫出的圖形
     private List<UMLObject> shapes = new ArrayList<>();
 
-    // 所有已畫出的線
-    private List<LineObject> lines = new ArrayList<>();
-
     // 當前被點擊的圖形
     private UMLObject currentSelectedObject;
 
@@ -38,7 +35,6 @@ public class UMLEditor extends JPanel {
     // 被選擇的圖形
     private List<UMLObject> selectShapes = new ArrayList<>();
 
-
     public static UMLEditor getUmlEditor() {
         return umlEditor = umlEditor == null ? new UMLEditor() : umlEditor;
     }
@@ -49,14 +45,6 @@ public class UMLEditor extends JPanel {
 
     public void addShape(UMLObject umlObject) {
         this.shapes.add(umlObject);
-    }
-
-    public List<LineObject> getLines() {
-        return lines;
-    }
-
-    public void addLine(LineObject line) {
-        this.lines.add(line);
     }
 
     public UMLObject getCurrentSelectedObject() {
@@ -75,14 +63,6 @@ public class UMLEditor extends JPanel {
         this.buttonRole = buttonRole;
     }
 
-//    public LineObject getCurrentLineObjectOfButton() {
-//        return currentLineObjectOfButton;
-//    }
-//
-//    public void setCurrentLineObjectOfButton(LineObject currentLineObjectOfButton) {
-//        this.currentLineObjectOfButton = currentLineObjectOfButton;
-//    }
-
     public void setCurrentButtonListener(EventListener currentButtonListener) {
         this.currentButtonListener = currentButtonListener;
     }
@@ -99,16 +79,9 @@ public class UMLEditor extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
-        for (int i = 0; i < shapes.size(); i++) {
-            shapes.get(i).draw(g2);
+        for (UMLObject shape : shapes) {
+            shape.draw(g2);
         }
-        for (int i = 0; i < lines.size(); i++) {
-            lines.get(i).draw(g2);
-        }
-
-        g2.setPaint(new Color(155, 100, 123, 60));
-//        drawRect(g2);
     }
 
     public List<UMLObject> getSelectShapes() {
@@ -119,9 +92,18 @@ public class UMLEditor extends JPanel {
         this.selectShapes.add(umlObject);
     }
 
-    public void resetIsSelected(Boolean isSelected){
-        for (UMLObject umlObject : getSelectShapes()) {
-            umlObject.setSelected(isSelected);
+    public void resetIsSelected(Boolean isSelected) {
+        for (UMLObject shape : shapes) {
+            shape.setSelected(isSelected);
+        }
+    }
+
+    public void setTopObject(UMLObject shape) {
+        for (int i = 0; i < shapes.size(); i++) {
+            if (shapes.get(i) == shape) {
+                shapes.add(0, shapes.get(i));
+                shapes.remove(i + 1);
+            }
         }
     }
 }
