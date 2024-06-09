@@ -1,0 +1,5 @@
+package object;
+
+public enum ButtonRole {
+    SELECT,ASSOCIATION_LINE,GENERALIZATION_LINE,COMPOSITION_LINE,CLASS,USECASE
+}
