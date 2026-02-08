@@ -69,11 +69,23 @@ public class UMLEditor extends JPanel {
 
     // 設置當前和還原前一個按鈕的監聽器
     public void setButtonListener() {
-        removeMouseListener((MouseListener) preButtonListener);
-        removeMouseMotionListener((MouseMotionListener) preButtonListener);
+        if (preButtonListener != null) {
+            if (preButtonListener instanceof MouseListener) {
+                removeMouseListener((MouseListener) preButtonListener);
+            }
+            if (preButtonListener instanceof MouseMotionListener) {
+                removeMouseMotionListener((MouseMotionListener) preButtonListener);
+            }
+        }
         preButtonListener = currentButtonListener;
-        addMouseListener((MouseListener) currentButtonListener);
-        addMouseMotionListener((MouseMotionListener) currentButtonListener);
+        if (currentButtonListener != null) {
+            if (currentButtonListener instanceof MouseListener) {
+                addMouseListener((MouseListener) currentButtonListener);
+            }
+            if (currentButtonListener instanceof MouseMotionListener) {
+                addMouseMotionListener((MouseMotionListener) currentButtonListener);
+            }
+        }
     }
 
     public void paintComponent(Graphics g) {
@@ -107,3 +119,4 @@ public class UMLEditor extends JPanel {
         }
     }
 }
+
