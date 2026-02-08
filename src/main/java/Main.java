@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame editor = new JFrame();
+        JFrame editor = null;
         Container container = editor.getContentPane();
         UMLEditor umlEditor = UMLEditor.getUmlEditor();
         MenuBarButton menuBarButton = new MenuBarButton();
